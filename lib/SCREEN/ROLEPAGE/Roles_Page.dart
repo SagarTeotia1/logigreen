@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart'; // Import Get package
+import 'package:logigreen/SCREEN/DRIVER/HomeScreen/Driver_Home_Screen.dart';
 import 'package:logigreen/SCREEN/OPERATOR/Screens/HomeScreen/LogisticOperator_Home_Screen.dart';
 import 'package:logigreen/const/const_colo.dart';
 // Import LogisticOperatorHomeScreen
@@ -55,7 +56,7 @@ class _UserRoleSelectionState extends State<UserRoleSelection> {
               onPressed: () {
                 // Navigate to the respective home screen based on the selected role
                 if (_selectedRole == 'Driver') {
-                  Get.off(() => LogisticOperatorHomeScreen());
+                  Get.off(() => DriverHomeScreen());
                 } else if (_selectedRole == 'Logistics Operator') {
                   Get.off(() => LogisticOperatorHomeScreen());
                 }
