@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart'; // Import Get package
+import 'package:logigreen/SCREEN/OPERATOR/Screens/HomeScreen/LogisticOperator_Home_Screen.dart';
 import 'package:logigreen/const/const_colo.dart';
+// Import LogisticOperatorHomeScreen
 
 class UserRoleSelection extends StatefulWidget {
   @override
@@ -50,19 +53,12 @@ class _UserRoleSelectionState extends State<UserRoleSelection> {
             SizedBox(height: 30),
             ElevatedButton(
               onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                    title: Text('Selected Role'),
-                    content: Text('You selected: $_selectedRole'),
-                    actions: [
-                      TextButton(
-                        onPressed: () => Navigator.of(context).pop(),
-                        child: Text('Close'),
-                      ),
-                    ],
-                  ),
-                );
+                // Navigate to the respective home screen based on the selected role
+                if (_selectedRole == 'Driver') {
+                  Get.off(() => LogisticOperatorHomeScreen());
+                } else if (_selectedRole == 'Logistics Operator') {
+                  Get.off(() => LogisticOperatorHomeScreen());
+                }
               },
               child: Text('Confirm Selection'),
             ),
