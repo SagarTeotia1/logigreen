@@ -1,6 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:logigreen/CONST/const_colo.dart';
+import 'package:logigreen/SCREEN/OPERATOR/Screens/Guide/LogiGuide.dart';
 
 class LogisticOperatorHomeScreen extends StatefulWidget {
   const LogisticOperatorHomeScreen({super.key});
@@ -20,9 +21,7 @@ class _LogisticOperatorHomeScreenState
      Container(
       color: Colors.pink,
     ),
-     Container(
-      color: Colors.yellow,
-    ),
+    LogiOperatorGuide(),
      Container(
       color: Colors.orange,
     ),
@@ -38,7 +37,7 @@ class _LogisticOperatorHomeScreenState
   final List<Map<String, dynamic>> _navigationItems = [
     {'icon': Icons.local_shipping, 'label': 'Shipment'},
     {'icon': Icons.dashboard, 'label': 'Packaging'},
-    {'icon': Icons.accessibility, 'label': 'Guide'},
+    {'icon': Icons.support_agent, 'label': 'Guide'},
     {'icon': Icons.analytics, 'label': 'Reports'},
     {'icon': Icons.person, 'label': 'Profile'},
   ];
