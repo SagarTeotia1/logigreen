@@ -2,6 +2,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:logigreen/CONST/const_colo.dart';
 import 'package:logigreen/SCREEN/OPERATOR/Screens/Guide/LogiGuide.dart';
+import 'package:logigreen/SCREEN/OPERATOR/Screens/HomePage/LogiOperatorHomePage.dart';
 import 'package:logigreen/SCREEN/OPERATOR/Screens/Profile/LogiOperatorProfile.dart';
 
 class LogisticOperatorHomeScreen extends StatefulWidget {
@@ -16,9 +17,7 @@ class _LogisticOperatorHomeScreenState
     extends State<LogisticOperatorHomeScreen> {
   // Define a list of widgets (pages) to show based on the index
   final List<Widget> _pages = [
-    Container(
-      color: Colors.red,
-    ),
+    LogiOperatorHomePage(),
      Container(
       color: Colors.pink,
     ),

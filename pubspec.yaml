@@ -38,6 +38,10 @@ dependencies:
   curved_navigation_bar: ^1.0.6
   animated_text_kit: ^4.2.1
   model_viewer_plus: ^1.9.1
+  animations: ^2.0.0
+  fl_chart: ^0.70.0
+  flutter_animated_icons: ^1.0.0
+
 
 dev_dependencies:
   flutter_test:
