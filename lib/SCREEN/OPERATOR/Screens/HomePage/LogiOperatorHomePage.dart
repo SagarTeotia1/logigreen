@@ -183,6 +183,7 @@ class _LogiOperatorHomePageState extends State<LogiOperatorHomePage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   CO2EmissionWidget(),
+                  
                 ],
               ),
             ),
