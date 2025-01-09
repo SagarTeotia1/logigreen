@@ -262,7 +262,7 @@ class CurrentDeliveryDetails extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Current Delivery Details', style: titleStyle),
+                    Text('Current Delivery Details', style: TextStyle(fontSize: 18)),
                     Icon(Icons.local_shipping, color: Colors.green),
                   ],
                 ),
