@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:logigreen/CONST/const_colo.dart';
 import 'package:logigreen/SCREEN/OPERATOR/Screens/Guide/LogiGuide.dart';
 import 'package:logigreen/SCREEN/OPERATOR/Screens/HomePage/LogiOperatorHomePage.dart';
-import 'package:logigreen/SCREEN/OPERATOR/Screens/Packaging/PackagingScreen.dart';
 import 'package:logigreen/SCREEN/OPERATOR/Screens/Profile/LogiOperatorProfile.dart';
+import 'package:logigreen/SCREEN/OPERATOR/Screens/ReportPage/ReportPage.dart';
 
 class LogisticOperatorHomeScreen extends StatefulWidget {
   const LogisticOperatorHomeScreen({super.key});
@@ -19,11 +19,9 @@ class _LogisticOperatorHomeScreenState
   // Define a list of widgets (pages) to show based on the index
   final List<Widget> _pages = [
     LogiOperatorHomePage(),
-    Packagingscreen(),
+
     LogiOperatorGuide(),
-    Container(
-      color: Colors.orange,
-    ),
+   ReportPage(),
     LogiOperatorProfileScreen()
   ];
 
@@ -32,7 +30,6 @@ class _LogisticOperatorHomeScreenState
 
   final List<Map<String, dynamic>> _navigationItems = [
     {'icon': Icons.local_shipping, 'label': 'Shipment'},
-    {'icon': Icons.dashboard, 'label': 'Packaging'},
     {'icon': Icons.support_agent, 'label': 'Guide'},
     {'icon': Icons.analytics, 'label': 'Reports'},
     {'icon': Icons.person, 'label': 'Profile'},
