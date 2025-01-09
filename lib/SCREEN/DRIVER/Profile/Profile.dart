@@ -27,12 +27,13 @@ class _DriverProfileScreenState extends State<DriverProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),  // Set background to white for the entire screen
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
             expandedHeight: 175.0,
             pinned: true,
-            backgroundColor: color1,
+            backgroundColor: const Color.fromARGB(255, 145, 172, 143),  // Use a lighter, more neutral background color
             flexibleSpace: FlexibleSpaceBar(
               background: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
@@ -50,7 +51,7 @@ class _DriverProfileScreenState extends State<DriverProfileScreen> {
                             style: const TextStyle(
                               fontSize: 22,
                               fontWeight: FontWeight.bold,
-                              color: Colors.white,
+                              color: Color.fromARGB(255, 255, 255, 255),  // Changed to black for better contrast
                             ),
                           ),
                           const SizedBox(height: 8),
@@ -58,7 +59,7 @@ class _DriverProfileScreenState extends State<DriverProfileScreen> {
                             driverEmail,
                             style: const TextStyle(
                               fontSize: 14,
-                              color: Colors.white70,
+                              color: Colors.white70,  // Changed to black for better contrast
                             ),
                           ),
                           const SizedBox(height: 8),
@@ -87,13 +88,13 @@ class _DriverProfileScreenState extends State<DriverProfileScreen> {
                                       value: ecoDrivingScore,
                                       backgroundColor: Colors.grey[300],
                                       valueColor: AlwaysStoppedAnimation<Color>(
-                                        color2,
+                                        const Color.fromARGB(255, 145, 172, 143),  // Lighter color for progress
                                       ),
                                       strokeWidth: 6.0,
                                     ),
                                     const Icon(
                                       Icons.eco,
-                                      color: darktheme,
+                                      color: const Color.fromARGB(255, 102, 120, 95),  // Changed to green for better alignment
                                       size: 20,
                                     ),
                                   ],
@@ -145,7 +146,7 @@ class _DriverProfileScreenState extends State<DriverProfileScreen> {
                   child: Container(
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      color: color2,
+                      color: const Color.fromARGB(255, 145, 172, 143),  // Changed to a lighter background
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Column(
@@ -156,14 +157,14 @@ class _DriverProfileScreenState extends State<DriverProfileScreen> {
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                            color: Color.fromARGB(255, 255, 255, 255),  // Changed to black for better contrast
                           ),
                         ),
                         const SizedBox(height: 10),
                         LinearProgressIndicator(
                           value: emissionsReduction,
                           backgroundColor: Colors.grey[300],
-                          color: color1,
+                          color: const Color.fromARGB(255, 102, 120, 95),
                           minHeight: 8,
                         ),
                         const SizedBox(height: 10),
@@ -182,7 +183,7 @@ class _DriverProfileScreenState extends State<DriverProfileScreen> {
                   child: Container(
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      color: color2,
+                      color: const Color.fromARGB(255, 145, 172, 143),  // Lighter background color
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Column(
@@ -193,7 +194,7 @@ class _DriverProfileScreenState extends State<DriverProfileScreen> {
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                            color: Color.fromARGB(255, 255, 255, 255),
                           ),
                         ),
                         const SizedBox(height: 10),
@@ -204,7 +205,7 @@ class _DriverProfileScreenState extends State<DriverProfileScreen> {
                               style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.white,
+                                color: Color.fromARGB(255, 255, 255, 255),
                               ),
                             ),
                             const SizedBox(width: 8),
@@ -234,7 +235,7 @@ class _DriverProfileScreenState extends State<DriverProfileScreen> {
                   child: Container(
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      color: color2,
+                      color:const Color.fromARGB(255, 145, 172, 143),  // Lighter background color
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Column(
@@ -245,7 +246,7 @@ class _DriverProfileScreenState extends State<DriverProfileScreen> {
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                            color: Color.fromARGB(255, 255, 255, 255),
                           ),
                         ),
                         const SizedBox(height: 10),
@@ -257,14 +258,14 @@ class _DriverProfileScreenState extends State<DriverProfileScreen> {
                               children: [
                                 Text(
                                   delivery["date"]!,
-                                  style: const TextStyle(fontSize: 14, color: Colors.white),
+                                  style: const TextStyle(fontSize: 14, color: Color.fromARGB(255, 255, 255, 255)),
                                 ),
                                 Text(
                                   delivery["status"]!,
                                   style: TextStyle(
                                     fontSize: 14,
                                     color: delivery["status"] == "Completed"
-                                        ? Colors.black
+                                        ? Colors.green
                                         : Colors.red,
                                   ),
                                 ),
@@ -284,8 +285,8 @@ class _DriverProfileScreenState extends State<DriverProfileScreen> {
                     onPressed: () {
                       // Perform logout
                     },
-                    icon: const Icon(Icons.logout,color: Colors.white,),
-                    label: const Text("Logout",style: TextStyle(color: Colors.white),),
+                    icon: const Icon(Icons.logout, color: Colors.white),
+                    label: const Text("Logout", style: TextStyle(color: Colors.white)),
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size(double.infinity, 50),
                       backgroundColor: Colors.red[400],

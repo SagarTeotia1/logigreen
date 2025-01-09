@@ -35,7 +35,7 @@ class _DriverHomeScreenState extends State<DriverHomeScreen> {
     {'icon': Icons.home, 'label': 'Home'},
     {'icon': Icons.eco, 'label': 'Report'}, // Report now navigates to Sustainability Report
     {'icon': Icons.support_agent, 'label': 'Guide'},
-    {'icon': Icons.analytics, 'label': 'Reports'},
+    {'icon': Icons.add_box_rounded, 'label': 'Packages'},
     {'icon': Icons.person, 'label': 'Profile'},
   ];
 
@@ -81,6 +81,8 @@ class _DriverHomeScreenState extends State<DriverHomeScreen> {
               Get.off(() => SustainabilityReportPage()); // Navigate to Sustainability Report
             } else if (index == 2) {
               Get.off(() => DriverGuide()); // Navigate to Driver Guide
+            } else if (index == 3) {
+              Get.off(() => DriverProfileScreen()); // Navigate to Driver Profile
             } else if (index == 4) {
               Get.off(() => DriverProfileScreen()); // Navigate to Driver Profile
             }
