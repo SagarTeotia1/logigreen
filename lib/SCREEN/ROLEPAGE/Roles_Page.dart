@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart'; // Import Get package
+import 'package:get/get.dart';
+import 'package:logigreen/SCREEN/DRIVER/HomeScreen/Driver_Home_Screen.dart';
 import 'package:logigreen/SCREEN/OPERATOR/Screens/HomeScreen/LogisticOperator_Home_Screen.dart';
 import 'package:logigreen/const/const_colo.dart';
-// Import LogisticOperatorHomeScreen
 
 class UserRoleSelection extends StatefulWidget {
   @override
@@ -17,51 +17,126 @@ class _UserRoleSelectionState extends State<UserRoleSelection> {
     return Scaffold(
       backgroundColor: homeBg,
       appBar: AppBar(
-        title: Text('Select Your Role'),
+        title: const Text('Select Your Role'),
+        backgroundColor: Colors.green, // Custom color for the AppBar
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 30.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(
+            const Text(
               'Choose Your Role:',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+                color: Colors.black87,
+              ),
+              textAlign: TextAlign.center,
             ),
-            SizedBox(height: 20),
-            RadioListTile<String>(
-              title: Text('Driver'),
-              value: 'Driver',
-              groupValue: _selectedRole,
-              onChanged: (value) {
+            const SizedBox(height: 40),
+            _buildRoleOption(
+              title: 'Driver',
+              icon: Icons.local_shipping,
+              isSelected: _selectedRole == 'Driver',
+              onTap: () {
                 setState(() {
-                  _selectedRole = value!;
+                  _selectedRole = 'Driver';
                 });
               },
             ),
-            RadioListTile<String>(
-              title: Text('Logistics Operator'),
-              value: 'Logistics Operator',
-              groupValue: _selectedRole,
-              onChanged: (value) {
+            const SizedBox(height: 20),
+            _buildRoleOption(
+              title: 'Logistics Operator',
+              icon: Icons.business_center,
+              isSelected: _selectedRole == 'Logistics Operator',
+              onTap: () {
                 setState(() {
-                  _selectedRole = value!;
+                  _selectedRole = 'Logistics Operator';
                 });
               },
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 40),
             ElevatedButton(
               onPressed: () {
-                // Navigate to the respective home screen based on the selected role
                 if (_selectedRole == 'Driver') {
-                  Get.off(() => LogisticOperatorHomeScreen());
+                  Get.off(() => DriverHomeScreen());
                 } else if (_selectedRole == 'Logistics Operator') {
                   Get.off(() => LogisticOperatorHomeScreen());
                 }
               },
-              child: Text('Confirm Selection'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.green,
+                padding: const EdgeInsets.symmetric(vertical: 15),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+              ),
+              child: const Text(
+                'Confirm Selection',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
             ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildRoleOption({
+    required String title,
+    required IconData icon,
+    required bool isSelected,
+    required VoidCallback onTap,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+        decoration: BoxDecoration(
+          color: isSelected ? Colors.green.shade100 : Colors.white,
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(
+            color: isSelected ? Colors.green : Colors.grey.shade300,
+            width: 2,
+          ),
+          boxShadow: isSelected
+              ? [
+                  BoxShadow(
+                    color: Colors.green.withOpacity(0.3),
+                    blurRadius: 10,
+                    offset: const Offset(0, 4),
+                  ),
+                ]
+              : [],
+        ),
+        padding: const EdgeInsets.all(20),
+        child: Row(
+          children: [
+            Icon(
+              icon,
+              size: 40,
+              color: isSelected ? Colors.green : Colors.black54,
+            ),
+            const SizedBox(width: 20),
+            Expanded(
+              child: Text(
+                title,
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: isSelected ? Colors.green : Colors.black87,
+                ),
+              ),
+            ),
+            if (isSelected)
+              const Icon(
+                Icons.check_circle,
+                color: Colors.green,
+                size: 30,
+              ),
           ],
         ),
       ),
