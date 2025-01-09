@@ -21,7 +21,7 @@ class _DriverHomeScreenState extends State<DriverHomeScreen> {
     // Home page
     HomeScreenPage(),
     // Sustainability Report page
-    SustainabilityReportPage(), // Add the Sustainability Report page here
+    // SustainabilityReportPage(), // Add the Sustainability Report page here
     DriverGuide(), // Driver Guide page from the correct path
     DriverReportPage(),
     DriverProfileScreen(), // Driver Profile page from the correct path
@@ -32,7 +32,7 @@ class _DriverHomeScreenState extends State<DriverHomeScreen> {
 
   final List<Map<String, dynamic>> _navigationItems = [
     {'icon': Icons.home, 'label': 'Home'},
-    {'icon': Icons.eco, 'label': 'Report'}, // Report now navigates to Sustainability Report
+    // {'icon': Icons.eco, 'label': 'Report'}, // Report now navigates to Sustainability Report
     {'icon': Icons.support_agent, 'label': 'Guide'},
     {'icon': Icons.analytics, 'label': 'Report'},
     {'icon': Icons.person, 'label': 'Profile'},
