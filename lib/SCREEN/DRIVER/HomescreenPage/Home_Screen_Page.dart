@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:logigreen/Const/const_colo.dart';  // Assuming your custom colors are here
+import 'package:logigreen/Const/const_colo.dart'; // Assuming your custom colors are here
+import 'package:logigreen/SCREEN/DRIVER/Widgets/HomePage/carbon_emmisions.dart';
 
 class HomeScreenPage extends StatefulWidget {
   const HomeScreenPage({super.key});
@@ -39,7 +40,58 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
           ),
         ],
       ),
-      drawer: _buildDrawer(),
+      drawer: Drawer(
+        child: Column(
+          children: [
+            const UserAccountsDrawerHeader(
+              accountName: Text('John Doe'),
+              accountEmail: Text('driver@logigreen.com'),
+              currentAccountPicture: CircleAvatar(
+                backgroundColor: Colors.white,
+                child: Text('JD'),
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.dashboard),
+              title: const Text('Dashboard'),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: const Icon(Icons.notifications, color: Colors.black),
+              title: const Text("Notifications"),
+              onTap: () {
+                // Handle notifications action
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.palette, color: Colors.black),
+              title: const Text("Change Theme"),
+              onTap: () {
+                // Handle theme change
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.language, color: Colors.black),
+              title: const Text("Change Language"),
+              onTap: () {
+                // Handle language change
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.settings, color: Colors.black),
+              title: const Text("Settings"),
+              onTap: () {
+                // Handle settings
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.logout, color: Colors.black),
+              title: const Text('Logout'),
+              onTap: () {},
+            ),
+          ],
+        ),
+      ),
       body: Stack(
         children: [
           _buildBackgroundImage(),
@@ -52,50 +104,6 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
                 child: _buildDraggableSheet(),
               ),
             ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildDrawer() {
-    return Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: [
-          const DrawerHeader(
-            decoration: BoxDecoration(
-              color: homeBg, // Assuming homeBg is your theme color
-            ),
-            child: UserAccountsDrawerHeader(
-              accountName: Text('Sagar'),
-              accountEmail: Text('driver@logigreen.com'),
-              currentAccountPicture: CircleAvatar(
-                backgroundColor: Colors.white,
-                backgroundImage: AssetImage('assets/images/Sagar.jpg'),
-              ),
-            ),
-          ),
-          ListTile(
-            leading: const Icon(Icons.person),
-            title: const Text('Profile'),
-            onTap: () {
-              // Navigate to Profile Page
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.settings),
-            title: const Text('Settings'),
-            onTap: () {
-              // Navigate to Settings Page
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.exit_to_app),
-            title: const Text('Logout'),
-            onTap: () {
-              // Implement logout logic here
-            },
           ),
         ],
       ),
@@ -150,7 +158,7 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
             } else if (filter == "Eco Driving") {
               chipColor = Colors.blue; // Blue for Eco Driving
             } else {
-              chipColor = homeBg;
+              chipColor = Color.fromARGB(255, 218, 244, 219);
             }
             return Padding(
               padding: const EdgeInsets.only(right: 8.0),
@@ -178,8 +186,7 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
 
   Widget _buildDraggableSheet() {
     final List<String> tasks = [
-      'Track Carbon Emissions',
-      'Leaderboard and Rewards',
+      'Track CO2 Emissions',
       'View Sustainability Reports',
     ];
 
@@ -190,7 +197,7 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
       builder: (BuildContext context, ScrollController scrollController) {
         return Container(
           decoration: BoxDecoration(
-            color: homeBg,
+            color: Color.fromARGB(255, 218, 244, 219),
             borderRadius: const BorderRadius.vertical(top: Radius.circular(16.0)),
             boxShadow: [
               BoxShadow(
@@ -251,7 +258,46 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
                       trailing: IconButton(
                         icon: Icon(Icons.arrow_forward),
                         onPressed: () {
-                          // No navigation yet as those pages were removed
+                          // Show pop-up based on task
+                          if (task == 'Track Carbon Dioxide Emissions') {
+                            showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                title: Text('Track Carbon Dioxide Emissions'),
+                                content: CO2EmissionWidget(),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: Text('Close'),
+                                  ),
+                                ],
+                              ),
+                            );
+                          } else if (task == 'View Sustainability Reports') {
+                            showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                title: Text('Sustainability Report'),
+                                content: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    // Display your sustainability report here
+                                    Text("Here is the report..."),
+                                  ],
+                                ),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: Text('Close'),
+                                  ),
+                                ],
+                              ),
+                            );
+                          }
                         },
                       ),
                     ),
