@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:logigreen/SCREEN/OPERATOR/Screens/Guide/LogiGuide.dart';
 import 'package:logigreen/SCREEN/OPERATOR/Widgets/HomePage/ShipmentHistoryWidget.dart';
 import 'package:logigreen/SCREEN/OPERATOR/Widgets/HomePage/ShipmentWidget.dart';
 import 'package:logigreen/SCREEN/OPERATOR/Widgets/HomePage/co2Summary.dart';
@@ -195,6 +198,18 @@ class _LogiOperatorHomePageState extends State<LogiOperatorHomePage> {
           ),
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Handle Guide support action
+         Get.off(()=>LogiOperatorGuide());
+        },
+        child: const Icon(Icons.help_outline, color: Colors.white,),
+        backgroundColor: color1,
+      ),
     );
   }
+
+  // Show a simple dialog for guide support when the FAB is pressed
+  
+  
 }

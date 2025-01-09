@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:logigreen/SCREEN/OPERATOR/Widgets/CreateShipment.dart';
 
 class MainSectionWidget extends StatelessWidget {
   const MainSectionWidget({Key? key}) : super(key: key);
@@ -17,19 +20,21 @@ class MainSectionWidget extends StatelessWidget {
             children: [
               _buildSectionBox(
                 context,
-                title: "Peer Counseling",
-                icon: Icons.chat_bubble_outline,
+                title: "Create a Shipment",
+                icon: Icons.local_shipping,
                 color: Colors.blueAccent,
                 width: sectionWidth,
                 height: sectionHeight,
                 onTap: () {
-                  // Navigate to Peer Counseling Page
+                  Get.off(()=>Createshipment());
+                  // Navigate
+                  // to Peer Counseling Page
                 },
               ),
               _buildSectionBox(
                 context,
-                title: "Substance Identification",
-                icon: Icons.search,
+                title: "Packaging Optimisation",
+                icon: Icons.inventory_2,
                 color: Colors.teal,
                 width: sectionWidth,
                 height: sectionHeight,

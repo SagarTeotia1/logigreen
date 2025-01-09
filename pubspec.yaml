@@ -41,6 +41,7 @@ dependencies:
   animations: ^2.0.0
   fl_chart: ^0.70.0
   flutter_animated_icons: ^1.0.0
+  intl: ^0.20.1
 
 
 dev_dependencies:
