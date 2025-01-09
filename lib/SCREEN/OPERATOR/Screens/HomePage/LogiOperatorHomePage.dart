@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:logigreen/SCREEN/OPERATOR/Widgets/HomePage/ShipmentHistoryWidget.dart';
+import 'package:logigreen/SCREEN/OPERATOR/Widgets/HomePage/ShipmentWidget.dart';
 import 'package:logigreen/SCREEN/OPERATOR/Widgets/HomePage/co2Summary.dart';
 import 'package:logigreen/const/const_colo.dart';
 import 'package:logigreen/const/const_img.dart';
@@ -183,7 +185,8 @@ class _LogiOperatorHomePageState extends State<LogiOperatorHomePage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   CO2EmissionWidget(),
-                  
+                  ShipmentDetailsWidget(),
+                  ShipmentHistoryWidget(),
                 ],
               ),
             ),

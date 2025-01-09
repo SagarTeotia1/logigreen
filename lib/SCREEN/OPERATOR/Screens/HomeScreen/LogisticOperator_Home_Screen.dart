@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:logigreen/CONST/const_colo.dart';
 import 'package:logigreen/SCREEN/OPERATOR/Screens/Guide/LogiGuide.dart';
 import 'package:logigreen/SCREEN/OPERATOR/Screens/HomePage/LogiOperatorHomePage.dart';
+import 'package:logigreen/SCREEN/OPERATOR/Screens/Packaging/PackagingScreen.dart';
 import 'package:logigreen/SCREEN/OPERATOR/Screens/Profile/LogiOperatorProfile.dart';
 
 class LogisticOperatorHomeScreen extends StatefulWidget {
@@ -18,14 +19,12 @@ class _LogisticOperatorHomeScreenState
   // Define a list of widgets (pages) to show based on the index
   final List<Widget> _pages = [
     LogiOperatorHomePage(),
-     Container(
-      color: Colors.pink,
-    ),
+    Packagingscreen(),
     LogiOperatorGuide(),
-     Container(
+    Container(
       color: Colors.orange,
     ),
-     LogiOperatorProfileScreen()
+    LogiOperatorProfileScreen()
   ];
 
   // Initially set to 0, meaning the first page will be shown
@@ -43,7 +42,8 @@ class _LogisticOperatorHomeScreenState
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: homeBg, // Use your color constant for the background
-      body: _pages[_currentIndex], // Display the current page based on the selected index
+      body: _pages[
+          _currentIndex], // Display the current page based on the selected index
       bottomNavigationBar: CurvedNavigationBar(
         items: _navigationItems
             .map(
@@ -65,8 +65,8 @@ class _LogisticOperatorHomeScreenState
             .toList(),
         backgroundColor: Colors.transparent, // Make the background transparent
         color: Colors.white, // Color of the navigation bar
-        buttonBackgroundColor:
-            const Color.fromARGB(255, 247, 247, 247), // Central icon button background
+        buttonBackgroundColor: const Color.fromARGB(
+            255, 247, 247, 247), // Central icon button background
         animationDuration: const Duration(milliseconds: 300),
         height: 70, // Adjusted height to accommodate labels
         index: _currentIndex, // This ensures the correct icon is highlighted

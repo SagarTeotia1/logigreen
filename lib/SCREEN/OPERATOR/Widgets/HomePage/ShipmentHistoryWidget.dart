@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:logigreen/CONST/const_img.dart';
 
-class ShipmentDetailsWidget extends StatelessWidget {
+class ShipmentHistoryWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -9,9 +9,9 @@ class ShipmentDetailsWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Heading for the shipment details section
+          // Heading for the shipment history section
           Text(
-            "Upcoming Shipments",
+            "Shipment History",
             style: TextStyle(
               fontFamily: 'BoldFont',
               fontSize: 20,
@@ -20,36 +20,40 @@ class ShipmentDetailsWidget extends StatelessWidget {
             ),
           ),
           SizedBox(height: 16),
-          // Scrollable row of shipment detail cards
+          // Scrollable row of shipment history cards
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
               children: [
-                shipmentCard(
-                  shipmentId: "#12345",
-                  driverName: "John Doe",
+                shipmentHistoryCard(
+                  shipmentId: "#12341",
+                  driverName: "Michael Scott",
                   driverImage: logo, // Replace with actual image path
-                  estimatedArrival: "12 Jan 2025, 4:00 PM",
-                  quantity: "500 kg of Steel",
-                  destination: "Warehouse A, New York",
+                  deliveryDate: "10 Jan 2025, 2:00 PM",
+                  quantity: "200 kg of Cement",
+                  destination: "Warehouse C, Chicago",
                   vehicleType: "Truck",
-                  vehicleNumber: "NYT-8907",
+                  vehicleNumber: "CHI-6782",
                   mapImage: logo, // Replace with actual image path
                   carbonEfficiency: "85%",
-                  onTap: () => print("Shipment tapped: #12345"),
+                  tag: "Delivered",
+                  tagColor: Colors.green[700],
+                  onTap: () => print("Shipment tapped: #12341"),
                 ),
-                shipmentCard(
-                  shipmentId: "#12346",
-                  driverName: "Jane Smith",
+                shipmentHistoryCard(
+                  shipmentId: "#12342",
+                  driverName: "Pam Beesly",
                   driverImage: logo, // Replace with actual image path
-                  estimatedArrival: "13 Jan 2025, 10:00 AM",
-                  quantity: "300 kg of Aluminum",
-                  destination: "Warehouse B, Los Angeles",
+                  deliveryDate: "08 Jan 2025, 11:30 AM",
+                  quantity: "100 kg of Wood",
+                  destination: "Warehouse D, San Francisco",
                   vehicleType: "Van",
-                  vehicleNumber: "LAX-4578",
+                  vehicleNumber: "SFO-3291",
                   mapImage: logo, // Replace with actual image path
-                  carbonEfficiency: "78%",
-                  onTap: () => print("Shipment tapped: #12346"),
+                  carbonEfficiency: "92%",
+                  tag: "Delayed",
+                  tagColor: Colors.red[700],
+                  onTap: () => print("Shipment tapped: #12342"),
                 ),
               ],
             ),
@@ -59,17 +63,19 @@ class ShipmentDetailsWidget extends StatelessWidget {
     );
   }
 
-  Widget shipmentCard({
+  Widget shipmentHistoryCard({
     required String shipmentId,
     required String driverName,
     required String driverImage,
-    required String estimatedArrival,
+    required String deliveryDate,
     required String quantity,
     required String destination,
     required String vehicleType,
     required String vehicleNumber,
     required String mapImage,
     required String carbonEfficiency,
+    required String tag,
+    required Color? tagColor,
     required VoidCallback onTap,
   }) {
     return Padding(
@@ -97,18 +103,44 @@ class ShipmentDetailsWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Map Image
-              ClipRRect(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(12),
-                  topRight: Radius.circular(12),
-                ),
-                child: Image.asset(
-                  mapImage,
-                  fit: BoxFit.cover,
-                  width: double.infinity,
-                  height: 90, // Fixed height for map image
-                ),
+              // Map Image with tag overlay
+              Stack(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(12),
+                      topRight: Radius.circular(12),
+                    ),
+                    child: Image.asset(
+                      mapImage,
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                      height: 90, // Fixed height for map image
+                    ),
+                  ),
+                  Positioned(
+                    top: 8,
+                    right: 8,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
+                        vertical: 4,
+                      ),
+                      decoration: BoxDecoration(
+                        color: tagColor,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Text(
+                        tag,
+                        style: TextStyle(
+                          fontSize: 10,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
               // Shipment Info
               Padding(
@@ -127,7 +159,7 @@ class ShipmentDetailsWidget extends StatelessWidget {
                     ),
                     SizedBox(height: 4),
                     Text(
-                      "Arrival: $estimatedArrival",
+                      "Delivered: $deliveryDate",
                       style: TextStyle(
                         fontSize: 12,
                         color: Colors.grey[700],
@@ -176,7 +208,7 @@ class ShipmentDetailsWidget extends StatelessWidget {
                 ),
               ),
               Divider(color: Colors.grey[300], thickness: 1),
-              // Efficiency Metric and Driver Info
+              // Carbon Efficiency and Driver Info
               Padding(
                 padding: const EdgeInsets.all(10),
                 child: Row(
@@ -186,7 +218,7 @@ class ShipmentDetailsWidget extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Carbon Efficiency of this Trip",
+                          "Carbon Efficiency :",
                           style: TextStyle(
                             fontSize: 10,
                             color: Colors.grey[600],
