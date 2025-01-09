@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart'; // Import Get package
 import 'package:logigreen/CONST/const_colo.dart';
 import 'package:logigreen/SCREEN/DRIVER/Guide/guide.dart'; // Correct path to Driver Guide
+import 'package:logigreen/SCREEN/DRIVER/Package_Screen/package_screen.dart';
 import 'package:logigreen/SCREEN/DRIVER/Profile/Profile.dart'; // Correct path to Driver Profile
 import 'package:logigreen/SCREEN/DRIVER/HomescreenPage/Home_Screen_Page.dart'; // Import the HomeScreenPage
 import 'package:logigreen/SCREEN/DRIVER/SustainabilityReport/sustainability_report.dart'; // Import the SustainabilityReport page
@@ -22,9 +23,7 @@ class _DriverHomeScreenState extends State<DriverHomeScreen> {
     // Sustainability Report page
     SustainabilityReportPage(), // Add the Sustainability Report page here
     DriverGuide(), // Driver Guide page from the correct path
-    Container(
-      color: Colors.orange,
-    ),
+    DriverReportPage(),
     DriverProfileScreen(), // Driver Profile page from the correct path
   ];
 
@@ -35,7 +34,7 @@ class _DriverHomeScreenState extends State<DriverHomeScreen> {
     {'icon': Icons.home, 'label': 'Home'},
     {'icon': Icons.eco, 'label': 'Report'}, // Report now navigates to Sustainability Report
     {'icon': Icons.support_agent, 'label': 'Guide'},
-    {'icon': Icons.add_box_rounded, 'label': 'Packages'},
+    {'icon': Icons.analytics, 'label': 'Report'},
     {'icon': Icons.person, 'label': 'Profile'},
   ];
 
