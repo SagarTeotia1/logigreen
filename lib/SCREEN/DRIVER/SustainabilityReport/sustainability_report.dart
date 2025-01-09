@@ -18,7 +18,6 @@ class SustainabilityReportPage extends StatefulWidget {
 }
 
 class _SustainabilityReportPageState extends State<SustainabilityReportPage> {
-  // Pages for navigation
   final List<Widget> _pages = [
     HomeScreenPage(),
     SustainabilityReportPage(),
@@ -27,7 +26,6 @@ class _SustainabilityReportPageState extends State<SustainabilityReportPage> {
     LogiOperatorProfileScreen(),
   ];
 
-  // Initially set to 1 since this page corresponds to the "Report" tab
   int _currentIndex = 1;
 
   final List<Map<String, dynamic>> _navigationItems = [
@@ -43,75 +41,26 @@ class _SustainabilityReportPageState extends State<SustainabilityReportPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Sustainability Report'),
-        backgroundColor: Colors.green,
+        backgroundColor: const Color(0xFFD5E8D6),
+        elevation: 2,
       ),
-      body: CustomScrollView(
-        slivers: [
-          // Carbon Emissions Widget
-          SliverToBoxAdapter(
-            child: Container(
-              color: Colors.transparent,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  CO2EmissionWidget(),
-                ],
-              ),
-            ),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color(0xFFEFFAF0), Color(0xFFC9E7CE)],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
           ),
-
-          // Eco Driving Widget
-          SliverToBoxAdapter(
-            child: Container(
-              color: Colors.transparent,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  EcoDrivingBehaviorWidget(),
-                ],
-              ),
-            ),
-          ),
-
-          // Fuel Consumption Widget
-          SliverToBoxAdapter(
-            child: Container(
-              color: Colors.transparent,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  FuelConsumptionWidget(),
-                ],
-              ),
-            ),
-          ),
-
-          // Recycling Widget
-          SliverToBoxAdapter(
-            child: Container(
-              color: Colors.transparent,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  RecyclingIncentivesWidget(),
-                ],
-              ),
-            ),
-          ),
-
-          // Route Optimization Widget
-          SliverToBoxAdapter(
-            child: Container(
-              color: Colors.transparent,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  RouteOptimizationWidget(),
-                ],
-              ),
-            ),
-          ),
-        ],
+        ),
+        child: CustomScrollView(
+          slivers: [
+            _buildWidgetSection(CO2EmissionWidget(), "Carbon Emissions"),
+            _buildWidgetSection(EcoDrivingBehaviorWidget(), "Eco Driving"),
+            _buildWidgetSection(FuelConsumptionWidget(), "Fuel Consumption"),
+            _buildWidgetSection(RecyclingIncentivesWidget(), "Recycling"),
+            _buildWidgetSection(RouteOptimizationWidget(), "Route Optimization"),
+          ],
+        ),
       ),
       bottomNavigationBar: CurvedNavigationBar(
         items: _navigationItems
@@ -119,34 +68,69 @@ class _SustainabilityReportPageState extends State<SustainabilityReportPage> {
               (item) => Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(item['icon'], color: Colors.black),
-                  const SizedBox(height: 4),
+                  Icon(item['icon'], color: Colors.black, size: 24),
+                  const SizedBox(height: 2),
                   Text(
                     item['label'],
-                    style: const TextStyle(fontSize: 8, color: Colors.black),
+                    style: const TextStyle(fontSize: 10, color: Colors.black),
                   ),
                 ],
               ),
             )
             .toList(),
-        backgroundColor: Colors.transparent,
+        backgroundColor: Color(0xFFD5E8D6),
         color: Colors.white,
-        buttonBackgroundColor:
-            const Color.fromARGB(255, 247, 247, 247), // Button background color
+        buttonBackgroundColor: const Color(0xFFEFFAF0),
         animationDuration: const Duration(milliseconds: 300),
-        height: 70,
+        height: 60,
         index: _currentIndex,
         onTap: (index) {
           setState(() {
             _currentIndex = index;
           });
 
-          // Navigate to the corresponding page
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (context) => _pages[index]),
           );
         },
+      ),
+    );
+  }
+
+  Widget _buildWidgetSection(Widget widget, String title) {
+    return SliverToBoxAdapter(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(12),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black12,
+                blurRadius: 8,
+                offset: const Offset(0, 4),
+              ),
+            ],
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF4B5945),
+                ),
+              ),
+              const SizedBox(height: 10),
+              widget,
+            ],
+          ),
+        ),
       ),
     );
   }

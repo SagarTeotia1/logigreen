@@ -18,7 +18,7 @@ class _UserRoleSelectionState extends State<UserRoleSelection> {
       backgroundColor: homeBg,
       appBar: AppBar(
         title: const Text('Select Your Role'),
-        backgroundColor: Colors.green, // Custom color for the AppBar
+        backgroundColor: Color.fromARGB(255, 145, 172, 143), // Custom color for the AppBar
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 30.0),
@@ -67,7 +67,7 @@ class _UserRoleSelectionState extends State<UserRoleSelection> {
                 }
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green,
+                backgroundColor: Color.fromARGB(255, 145, 172, 143),
                 padding: const EdgeInsets.symmetric(vertical: 15),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
