@@ -43,6 +43,7 @@ dependencies:
   flutter_animated_icons: ^1.0.0
   intl: ^0.20.1
   webview_flutter: ^4.10.0
+  video_player: ^2.9.2
 
 dev_dependencies:
   flutter_test:

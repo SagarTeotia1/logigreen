@@ -1,7 +1,10 @@
-import 'package:envirobot/Screen/ChooseAvatar/ChooseAvatar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:logigreen/SCREEN/DRIVER/HomeScreen/Driver_Home_Screen.dart';
+import 'package:logigreen/SCREEN/DRIVER/widgets/homepage/SpeedoMeterWidget.dart';
+import 'package:logigreen/SCREEN/DRIVER/widgets/homepage/carbon_emmisions.dart';
+import 'package:video_player/video_player.dart';
 
 class Navigation extends StatefulWidget {
   const Navigation({super.key});
@@ -11,55 +14,90 @@ class Navigation extends StatefulWidget {
 }
 
 class NavigationState extends State<Navigation> {
-  late WebViewController controller;
+  late VideoPlayerController _controller;
+  late Future<void> _initializeVideoPlayerFuture;
 
   @override
   void initState() {
     super.initState();
-    // Initialize WebViewController
-    controller = WebViewController()
-      ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..setNavigationDelegate(
-        NavigationDelegate(
-          onProgress: (int progress) {
-            // Update loading bar.
-          },
-          onPageStarted: (String url) {},
-          onPageFinished: (String url) {},
-          onHttpError: (HttpResponseError error) {},
-          onWebResourceError: (WebResourceError error) {},
-          onNavigationRequest: (NavigationRequest request) {
-            if (request.url.startsWith('https://readyplayer.me/avatar')) {
-              return NavigationDecision.prevent;
-            }
-            return NavigationDecision.navigate;
-          },
-        ),
-      )
-      ..loadRequest(Uri.parse('https://readyplayer.me/avatar'));
+    _controller = VideoPlayerController.asset('assets/images/videoplayback.mp4') // Replace with your video path
+      ..setLooping(true);  // Set looping to true
+
+    // Initialize the video controller and set the future to the initialization result
+    _initializeVideoPlayerFuture = _controller.initialize();
+
+    // Play the video immediately after it is initialized
+    _initializeVideoPlayerFuture.then((_) {
+      _controller.play();  // Start playing the video automatically
+      setState(() {}); // Rebuild to reflect the video initialization
+    });
   }
 
   @override
   void dispose() {
-    // Dispose WebViewController when the widget is destroyed
-    controller.dispose();
     super.dispose();
+    _controller.dispose(); // Dispose the controller to release resources
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Create Avatar'),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            // Navigate back to the previous screen
-            
-          },
+      backgroundColor: homeBg,
+      body: Container(
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(30),
+            topRight: Radius.circular(30),
+          ),
+          color: homeBg,
+        ),
+        child: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              backgroundColor: homeBg,
+              expandedHeight: 180,
+              floating: false,
+              pinned: true,
+              leading: IconButton(onPressed: (){
+                Get.off(()=>DriverHomeScreen());
+              }, icon: Icon(Icons.arrow_back)), // This removes the back arrow
+              flexibleSpace: FlexibleSpaceBar(
+                background: FutureBuilder(
+                  future: _initializeVideoPlayerFuture,
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.done) {
+                      return ClipRRect(
+                        borderRadius: const BorderRadius.only(
+                          bottomLeft: Radius.circular(30),
+                          bottomRight: Radius.circular(30),
+                        ),
+                        child: AspectRatio(
+                          aspectRatio: _controller.value.aspectRatio,
+                          child: VideoPlayer(_controller),
+                        ),
+                      );
+                    } else {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                  },
+                ),
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const SpeedometerWidget(),
+                    // Add the speedometer widget
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
       ),
-      body: WebViewWidget(controller: controller),
     );
   }
 }

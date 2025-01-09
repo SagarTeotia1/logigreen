@@ -304,7 +304,7 @@ class CurrentDeliveryDetails extends StatelessWidget {
                           const SizedBox(height: 16),
                           ElevatedButton(
                             onPressed: () {
-                              Get.off(() => NavigationPage());
+                              Get.off(() => Navigation());
                             },
                             child: Text("Navigate to Destination"),
                             style: ElevatedButton.styleFrom(
