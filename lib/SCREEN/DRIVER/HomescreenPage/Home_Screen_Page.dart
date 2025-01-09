@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:logigreen/Const/const_colo.dart'; // Assuming your custom colors are here
+import 'package:logigreen/Const/const_colo.dart';
+import 'package:logigreen/SCREEN/DRIVER/widgets/homepage/Navigation.dart'; // Assuming your custom colors are here
 
 class HomeScreenPage extends StatefulWidget {
   const HomeScreenPage({super.key});
@@ -262,7 +263,7 @@ class CurrentDeliveryDetails extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Current Delivery Details', style: TextStyle(fontSize: 18)),
+                    Text('Current Delivery Details', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                     Icon(Icons.local_shipping, color: Colors.green),
                   ],
                 ),
@@ -299,6 +300,18 @@ class CurrentDeliveryDetails extends StatelessWidget {
                               const SizedBox(width: 8),
                               Text(currentDelivery["receiver"]["name"], style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
                             ],
+                          ),
+                          const SizedBox(height: 16),
+                          ElevatedButton(
+                            onPressed: () {
+                              Get.off(() => NavigationPage());
+                            },
+                            child: Text("Navigate to Destination"),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.blue,
+                              padding: EdgeInsets.symmetric(vertical: 14.0, horizontal: 24.0),
+                              textStyle: TextStyle(fontSize: 16),
+                            ),
                           ),
                         ],
                       ),
@@ -372,34 +385,3 @@ class CurrentDeliveryDetails extends StatelessWidget {
   }
 }
 
-
-class DeliveryScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: DraggableScrollableSheet(
-        initialChildSize: 0.3,
-        minChildSize: 0.3,
-        maxChildSize: 0.7,
-        builder: (BuildContext context, ScrollController scrollController) {
-          return Container(
-            decoration: BoxDecoration(
-              color: Color.fromARGB(255, 218, 244, 219),
-              borderRadius: const BorderRadius.vertical(top: Radius.circular(16.0)),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.2),
-                  blurRadius: 8.0,
-                ),
-              ],
-            ),
-            child: SingleChildScrollView(
-              controller: scrollController,
-              child: CurrentDeliveryDetails(),
-            ),
-          );
-        },
-      ),
-    );
-  }
-}

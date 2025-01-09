@@ -42,7 +42,7 @@ dependencies:
   fl_chart: ^0.70.0
   flutter_animated_icons: ^1.0.0
   intl: ^0.20.1
-
+  webview_flutter: ^4.10.0
 
 dev_dependencies:
   flutter_test:
