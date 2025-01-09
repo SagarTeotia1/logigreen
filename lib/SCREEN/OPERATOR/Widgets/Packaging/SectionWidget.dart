@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:logigreen/SCREEN/OPERATOR/Widgets/CreateShipment.dart';
+import 'package:logigreen/SCREEN/OPERATOR/Widgets/PackagingRecom.dart';
 
 class MainSectionWidget extends StatelessWidget {
   const MainSectionWidget({Key? key}) : super(key: key);
@@ -39,6 +40,7 @@ class MainSectionWidget extends StatelessWidget {
                 width: sectionWidth,
                 height: sectionHeight,
                 onTap: () {
+                 Get.off(()=>PackagingRecom()); 
                   // Navigate to Substance Identification Page
                 },
               ),
