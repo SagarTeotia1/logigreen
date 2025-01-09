@@ -74,21 +74,8 @@ class _DriverHomeScreenState extends State<DriverHomeScreen> {
           setState(() {
             // Update the current index and display the corresponding page
             _currentIndex = index;
-            // Redirecting to the HomeScreenPage when 'Home' is tapped
-            if (index == 0) {
-              Get.off(() => HomeScreenPage());
-            } else if (index == 1) {
-              Get.off(() => SustainabilityReportPage()); // Navigate to Sustainability Report
-            } else if (index == 2) {
-              Get.off(() => DriverGuide()); // Navigate to Driver Guide
-            } else if (index == 3) {
-              Get.off(() => DriverProfileScreen()); // Navigate to Driver Profile
-            } else if (index == 4) {
-              Get.off(() => DriverProfileScreen()); // Navigate to Driver Profile
-            }
           });
-        },
-      ),
+  }),
     );
   }
 }
