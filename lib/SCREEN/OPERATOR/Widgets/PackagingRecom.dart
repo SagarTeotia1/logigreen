@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:logigreen/SCREEN/DRIVER/widgets/homepage/carbon_emmisions.dart';
 import 'package:logigreen/SCREEN/OPERATOR/Screens/HomeScreen/LogisticOperator_Home_Screen.dart';
 
 class PackagingRecom extends StatefulWidget {
@@ -100,7 +101,7 @@ class _PackagingRecomState extends State<PackagingRecom> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white, // White background color
+      backgroundColor: homeBg, // White background color
       appBar: AppBar(title: const Text('Packaging Recommendation'),leading: IconButton( icon: const Icon(Icons.arrow_back), onPressed: (){
         Get.off(()=>LogisticOperatorHomeScreen());})),
       body: Padding(
@@ -211,7 +212,7 @@ class _PackagingRecomState extends State<PackagingRecom> {
                 // Submit Button
                 ElevatedButton(
                   onPressed: _recommendPackaging,
-                  child: const Text('Get Packaging Recommendation'),
+                  child: const Text('Recommendation',style: TextStyle(color: Colors.black),),
                 ),
                 const SizedBox(height: 20),
 

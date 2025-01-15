@@ -10,75 +10,92 @@ class UserRoleSelection extends StatefulWidget {
 }
 
 class _UserRoleSelectionState extends State<UserRoleSelection> {
-  String _selectedRole = 'Driver'; // Default role
+  String _selectedRole = 'Logistics Operator'; // Default role
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: homeBg,
       appBar: AppBar(
-        title: const Text('Select Your Role'),
-        backgroundColor: Color.fromARGB(255, 145, 172, 143), // Custom color for the AppBar
+        title: const Text(
+          'Select Your Role',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        backgroundColor: Colors.white,
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 30.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const Text(
-              'Choose Your Role:',
-              style: TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-                color: Colors.black87,
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [homeBg, homeBg],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 30.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const Text(
+                'Choose Your Role:',
+                style: TextStyle(
+                  fontSize: 26,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black87,
+                ),
+                textAlign: TextAlign.center,
               ),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 40),
-            _buildRoleOption(
-              title: 'Driver',
-              icon: Icons.local_shipping,
-              isSelected: _selectedRole == 'Driver',
-              onTap: () {
-                setState(() {
-                  _selectedRole = 'Driver';
-                });
-              },
-            ),
-            const SizedBox(height: 20),
-            _buildRoleOption(
-              title: 'Logistics Operator',
-              icon: Icons.business_center,
-              isSelected: _selectedRole == 'Logistics Operator',
-              onTap: () {
-                setState(() {
-                  _selectedRole = 'Logistics Operator';
-                });
-              },
-            ),
-            const SizedBox(height: 40),
-            ElevatedButton(
-              onPressed: () {
-                if (_selectedRole == 'Driver') {
-                  Get.off(() => DriverHomeScreen());
-                } else if (_selectedRole == 'Logistics Operator') {
-                  Get.off(() => LogisticOperatorHomeScreen());
-                }
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color.fromARGB(255, 145, 172, 143),
-                padding: const EdgeInsets.symmetric(vertical: 15),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
+              const SizedBox(height: 30),
+              _buildRoleOption(
+                title: 'Logistics Operator',
+                icon: Icons.business_center,
+                isSelected: _selectedRole == 'Logistics Operator',
+                onTap: () {
+                  setState(() {
+                    _selectedRole = 'Logistics Operator';
+                  });
+                },
+              ),
+              const SizedBox(height: 20),
+              _buildRoleOption(
+                title: 'Delivery Partner',
+                icon: Icons.local_shipping,
+                isSelected: _selectedRole == 'Delivery Partner',
+                onTap: () {
+                  setState(() {
+                    _selectedRole = 'Delivery Partner';
+                  });
+                },
+              ),
+              const SizedBox(height: 40),
+              ElevatedButton(
+                onPressed: () {
+                  if (_selectedRole == 'Delivery Partner') {
+                    Get.off(() => DriverHomeScreen());
+                  } else if (_selectedRole == 'Logistics Operator') {
+                    Get.off(() => LogisticOperatorHomeScreen());
+                  }
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(255, 145, 172, 143),
+                  padding: const EdgeInsets.symmetric(vertical: 15),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  elevation: 5,
+                ),
+                child: const Text(
+                  'Confirm Selection',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
               ),
-              child: const Text(
-                'Confirm Selection',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -96,16 +113,16 @@ class _UserRoleSelectionState extends State<UserRoleSelection> {
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
         decoration: BoxDecoration(
-          color: isSelected ? Colors.green.shade100 : Colors.white,
+          color: isSelected ? color2 : Colors.white,
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
-            color: isSelected ? Colors.green : Colors.grey.shade300,
+            color: isSelected ? color1 : Colors.grey.shade300,
             width: 2,
           ),
           boxShadow: isSelected
               ? [
                   BoxShadow(
-                    color: Colors.green.withOpacity(0.3),
+                    color: Colors.white,
                     blurRadius: 10,
                     offset: const Offset(0, 4),
                   ),
@@ -118,7 +135,7 @@ class _UserRoleSelectionState extends State<UserRoleSelection> {
             Icon(
               icon,
               size: 40,
-              color: isSelected ? Colors.green : Colors.black54,
+              color: isSelected ? Colors.white : Colors.black54,
             ),
             const SizedBox(width: 20),
             Expanded(
@@ -127,14 +144,14 @@ class _UserRoleSelectionState extends State<UserRoleSelection> {
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  color: isSelected ? Colors.green : Colors.black87,
+                  color: isSelected ?Colors.white : Colors.black87,
                 ),
               ),
             ),
             if (isSelected)
               const Icon(
                 Icons.check_circle,
-                color: Colors.green,
+                color: Colors.white,
                 size: 30,
               ),
           ],

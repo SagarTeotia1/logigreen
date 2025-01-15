@@ -35,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                mainlogo, 
+                'assets/images/Logicon.png', 
                 height: 200, // Increased height
                 width: 200,  // Increased width
               ), // Logo image
@@ -44,9 +44,9 @@ class _SplashScreenState extends State<SplashScreen> {
                 child: AnimatedTextKit(
                   animatedTexts: [
                     TypewriterAnimatedText(
-                      "Connecting Communities to \n Turn Waste into Value",
+                      "Revolutionizing Logistic \n For Greener Tommorow",
                       textStyle: TextStyle(
-                        fontSize: 12, // Font size
+                        fontSize: 16, // Font size
                         fontWeight: FontWeight.bold,
                         fontFamily: regularfont, // Font family from const_fonts.dart
                          // Background color for text
